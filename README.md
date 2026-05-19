@@ -109,6 +109,20 @@ user's default role or secondary role `ALL`.
 
 The helper generates the equivalent `claude mcp add-json` command:
 
+```bash
+claude mcp add-json --scope user --client-secret metatate '{
+  "type": "http",
+  "url": "https://<account-url>/api/v2/databases/METATATE_APP/schemas/CORE/mcp-servers/METATATE_MCP",
+  "oauth": {
+    "clientId": "<snowflake-oauth-client-id>",
+    "callbackPort": 8080,
+    "scopes": "session:role:<snowflake-role>"
+  }
+}'
+```
+
+The JSON payload in that command is:
+
 ```json
 {
   "type": "http",

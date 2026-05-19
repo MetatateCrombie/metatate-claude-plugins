@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2
+
+- Added the full no-clone `claude mcp add-json` registration command to the
+  main README, so marketplace-only installers do not need a local checkout to
+  configure MCP.
+
 ## 0.1.1
 
 - Added quick access to the Metatate Snowflake Marketplace listing from the

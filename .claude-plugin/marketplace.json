@@ -9,7 +9,7 @@
       "name": "metatate",
       "source": "./plugins/metatate",
       "description": "Governed data context, authorization, query validation, and decision explanations for Claude Code.",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "author": {
         "name": "Metatate"
       }

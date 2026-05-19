@@ -7,7 +7,7 @@
     "name": "Metatate"
   },
   "homepage": "https://metatate.ai",
-  "repository": "https://github.com/MetatateCrombie/metatate-claude-plugins",
+  "repository": "https://github.com/metatateai/metatate-claude-plugins",
   "license": "MIT",
   "keywords": [
     "governance",

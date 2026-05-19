@@ -19,7 +19,7 @@ Ask your administrator for:
 Open Claude Code and add the marketplace:
 
 ```text
-/plugin marketplace add MetatateCrombie/metatate-claude-plugins
+/plugin marketplace add metatateai/metatate-claude-plugins
 ```
 
 Install the plugin:

@@ -80,7 +80,7 @@ For each Claude Code user:
 In Claude Code, add this public marketplace:
 
 ```text
-/plugin marketplace add MetatateCrombie/metatate-claude-plugins
+/plugin marketplace add metatateai/metatate-claude-plugins
 ```
 
 Install the Metatate plugin:

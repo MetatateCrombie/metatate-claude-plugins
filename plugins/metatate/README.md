@@ -19,7 +19,7 @@ The plugin adds Claude Code commands for:
 Install from the public marketplace:
 
 ```text
-/plugin marketplace add MetatateCrombie/metatate-claude-plugins
+/plugin marketplace add metatateai/metatate-claude-plugins
 /plugin install metatate@metatate-claude-plugins
 ```
 

@@ -2,6 +2,8 @@
 
 Claude Code plugin marketplace for Metatate.
 
+![Metatate plugin in Claude Code: /metatate:discover-context lists governed assets with sensitivity and PII labels, then /metatate:authorize-use returns a CONDITIONAL decision with rationale, conditions, and a decision_id.](docs/assets/metatate-demo.svg)
+
 The `metatate` plugin brings Metatate governed data workflows into Claude Code
 through the Snowflake-managed MCP server installed by the Metatate Snowflake
 Native App. It does not run a Metatate-hosted MCP gateway and it does not store

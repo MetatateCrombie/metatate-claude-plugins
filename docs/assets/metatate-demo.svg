@@ -1,0 +1,175 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 540" width="880" height="540" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" role="img" aria-label="Animated demo of the Metatate Claude Code plugin running /metatate:discover-context and /metatate:authorize-use.">
+  <title>Metatate plugin in Claude Code</title>
+  <desc>Two-scene terminal animation. Scene 1 runs /metatate:discover-context and lists three governed assets with sensitivity and PII labels. Scene 2 runs /metatate:authorize-use and returns a CONDITIONAL decision with rationale, conditions, and a decision_id.</desc>
+
+  <defs>
+    <clipPath id="screen">
+      <rect x="0" y="34" width="880" height="506" rx="0"/>
+    </clipPath>
+  </defs>
+
+  <!-- terminal chrome -->
+  <rect width="880" height="540" rx="10" fill="#0d1117"/>
+  <rect width="880" height="34" rx="10" fill="#161b22"/>
+  <rect y="26" width="880" height="8" fill="#161b22"/>
+  <circle cx="22" cy="17" r="6" fill="#ff5f56"/>
+  <circle cx="42" cy="17" r="6" fill="#ffbd2e"/>
+  <circle cx="62" cy="17" r="6" fill="#27c93f"/>
+  <text x="440" y="21" text-anchor="middle" fill="#8b949e" font-size="12">claude code  ·  metatate</text>
+  <line x1="0" y1="34" x2="880" y2="34" stroke="#30363d" stroke-width="1"/>
+
+  <!-- ============================================================
+       SCENE 1  ·  /metatate:discover-context
+       visible window: ~0.5s to 6.0s, fades out 6.0–6.3s
+       keyTimes pattern for each line (values="0;0;1;1;0;0"):
+         "0; (t_in-0.15)/18; t_in/18; 0.3333; 0.3500; 1"
+       ============================================================ -->
+  <g clip-path="url(#screen)">
+
+    <!-- L1: command -->
+    <text x="24" y="64">
+      <tspan fill="#58a6ff">&gt; </tspan><tspan fill="#79c0ff">/metatate:discover-context</tspan>
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0; 0.0195; 0.0278; 0.3333; 0.3500; 1" dur="18s" repeatCount="indefinite"/>
+    </text>
+
+    <!-- L2: user prompt -->
+    <text x="24" y="88" fill="#c9d1d9">  Show governed customer tables with PII.
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0; 0.0750; 0.0833; 0.3333; 0.3500; 1" dur="18s" repeatCount="indefinite"/>
+    </text>
+
+    <!-- L3: tool call header -->
+    <text x="24" y="124">
+      <tspan fill="#d2a8ff">● discover-context </tspan><tspan fill="#6e7681">(metatate)</tspan>
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0; 0.1306; 0.1389; 0.3333; 0.3500; 1" dur="18s" repeatCount="indefinite"/>
+    </text>
+
+    <!-- L4: tool args -->
+    <text x="24" y="146">
+      <tspan fill="#6e7681">  ⎿ </tspan><tspan fill="#8b949e">database_name: </tspan><tspan fill="#c9d1d9">ANALYTICS</tspan><tspan fill="#8b949e">    has_pii: </tspan><tspan fill="#56d364">true</tspan>
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0; 0.1583; 0.1667; 0.3333; 0.3500; 1" dur="18s" repeatCount="indefinite"/>
+    </text>
+
+    <!-- L5: result header -->
+    <text x="24" y="182" fill="#c9d1d9">  Returned 3 assets:
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0; 0.2028; 0.2111; 0.3333; 0.3500; 1" dur="18s" repeatCount="indefinite"/>
+    </text>
+
+    <!-- L6: row 1  (HIGH / yes) -->
+    <text x="24" y="206">
+      <tspan fill="#c9d1d9">    ANALYTICS.CRM.CUSTOMERS</tspan><tspan fill="#6e7681">        sensitivity </tspan><tspan fill="#f85149">HIGH</tspan><tspan fill="#6e7681">    pii </tspan><tspan fill="#f85149">yes</tspan>
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0; 0.2250; 0.2333; 0.3333; 0.3500; 1" dur="18s" repeatCount="indefinite"/>
+    </text>
+
+    <!-- L7: row 2  (MEDIUM / no) -->
+    <text x="24" y="228">
+      <tspan fill="#c9d1d9">    ANALYTICS.CRM.ORDERS</tspan><tspan fill="#6e7681">           sensitivity </tspan><tspan fill="#e3b341">MEDIUM</tspan><tspan fill="#6e7681">  pii </tspan><tspan fill="#56d364">no</tspan>
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0; 0.2472; 0.2556; 0.3333; 0.3500; 1" dur="18s" repeatCount="indefinite"/>
+    </text>
+
+    <!-- L8: row 3  (HIGH / yes) -->
+    <text x="24" y="250">
+      <tspan fill="#c9d1d9">    ANALYTICS.MARKETING.LEADS</tspan><tspan fill="#6e7681">      sensitivity </tspan><tspan fill="#f85149">HIGH</tspan><tspan fill="#6e7681">    pii </tspan><tspan fill="#f85149">yes</tspan>
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0; 0.2694; 0.2778; 0.3333; 0.3500; 1" dur="18s" repeatCount="indefinite"/>
+    </text>
+
+    <!-- blinking cursor at end of scene 1 (after last row, position approximated) -->
+    <rect x="24" y="270" width="8" height="14" fill="#c9d1d9">
+      <animate attributeName="opacity"
+               values="0;0;1;0;1;0;1;0;1;0;1;0;0"
+               keyTimes="0; 0.2778; 0.2833; 0.30; 0.305; 0.315; 0.32; 0.33; 0.3322; 0.3333; 0.3344; 0.3500; 1"
+               dur="18s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+
+  <!-- ============================================================
+       SCENE 2  ·  /metatate:authorize-use
+       visible window: ~7.0s to 17.0s, fades out 17.0–17.5s
+       keyTimes pattern for each line (values="0;0;1;1;0;0"):
+         "0; (t_in-0.15)/18; t_in/18; 0.9444; 0.9722; 1"
+       ============================================================ -->
+  <g clip-path="url(#screen)">
+
+    <!-- L1: command -->
+    <text x="24" y="64">
+      <tspan fill="#58a6ff">&gt; </tspan><tspan fill="#79c0ff">/metatate:authorize-use</tspan>
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0; 0.3806; 0.3889; 0.9444; 0.9722; 1" dur="18s" repeatCount="indefinite"/>
+    </text>
+
+    <!-- L2: user prompt line 1 -->
+    <text x="24" y="88" fill="#c9d1d9">  Can ANALYST_RO read ANALYTICS.CRM.CUSTOMERS
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0; 0.4361; 0.4444; 0.9444; 0.9722; 1" dur="18s" repeatCount="indefinite"/>
+    </text>
+
+    <!-- L3: user prompt line 2 -->
+    <text x="24" y="108" fill="#c9d1d9">  for the monthly churn dashboard refresh?
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0; 0.4528; 0.4611; 0.9444; 0.9722; 1" dur="18s" repeatCount="indefinite"/>
+    </text>
+
+    <!-- L4: tool call header -->
+    <text x="24" y="144">
+      <tspan fill="#d2a8ff">● authorize-use </tspan><tspan fill="#6e7681">(metatate)</tspan>
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0; 0.4917; 0.5000; 0.9444; 0.9722; 1" dur="18s" repeatCount="indefinite"/>
+    </text>
+
+    <!-- L5–L8: tool args -->
+    <text x="24" y="166">
+      <tspan fill="#6e7681">  ⎿ </tspan><tspan fill="#8b949e">table_name    </tspan><tspan fill="#c9d1d9">ANALYTICS.CRM.CUSTOMERS</tspan>
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0; 0.5139; 0.5222; 0.9444; 0.9722; 1" dur="18s" repeatCount="indefinite"/>
+    </text>
+    <text x="24" y="186">
+      <tspan fill="#6e7681">    </tspan><tspan fill="#8b949e">operation     </tspan><tspan fill="#c9d1d9">SELECT</tspan>
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0; 0.5306; 0.5389; 0.9444; 0.9722; 1" dur="18s" repeatCount="indefinite"/>
+    </text>
+    <text x="24" y="206">
+      <tspan fill="#6e7681">    </tspan><tspan fill="#8b949e">intended_use  </tspan><tspan fill="#c9d1d9">monthly churn dashboard refresh</tspan>
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0; 0.5472; 0.5556; 0.9444; 0.9722; 1" dur="18s" repeatCount="indefinite"/>
+    </text>
+    <text x="24" y="226">
+      <tspan fill="#6e7681">    </tspan><tspan fill="#8b949e">actor_role    </tspan><tspan fill="#c9d1d9">ANALYST_RO</tspan>
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0; 0.5639; 0.5722; 0.9444; 0.9722; 1" dur="18s" repeatCount="indefinite"/>
+    </text>
+
+    <!-- L9: decision badge -->
+    <g>
+      <rect x="24" y="252" width="280" height="28" rx="6" fill="#e3b34122" stroke="#e3b341" stroke-width="1"/>
+      <text x="36" y="271">
+        <tspan fill="#8b949e">Decision  </tspan><tspan fill="#e3b341" font-weight="700">CONDITIONAL</tspan><tspan fill="#56d364" font-weight="700">  ✓</tspan>
+      </text>
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0; 0.6028; 0.6111; 0.9444; 0.9722; 1" dur="18s" repeatCount="indefinite"/>
+    </g>
+
+    <!-- L10: rationale -->
+    <text x="24" y="306">
+      <tspan fill="#8b949e">  Rationale:  </tspan><tspan fill="#c9d1d9">PII columns require masking for ANALYST_RO.</tspan>
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0; 0.6361; 0.6444; 0.9444; 0.9722; 1" dur="18s" repeatCount="indefinite"/>
+    </text>
+
+    <!-- L11: conditions header -->
+    <text x="24" y="334" fill="#8b949e">  Conditions:
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0; 0.6694; 0.6778; 0.9444; 0.9722; 1" dur="18s" repeatCount="indefinite"/>
+    </text>
+
+    <!-- L12: condition 1 -->
+    <text x="24" y="356">
+      <tspan fill="#58a6ff">    • </tspan><tspan fill="#c9d1d9">Mask </tspan><tspan fill="#ffa657">EMAIL</tspan><tspan fill="#c9d1d9">, </tspan><tspan fill="#ffa657">PHONE</tspan><tspan fill="#c9d1d9"> columns</tspan>
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0; 0.6861; 0.6944; 0.9444; 0.9722; 1" dur="18s" repeatCount="indefinite"/>
+    </text>
+
+    <!-- L13: condition 2 -->
+    <text x="24" y="378">
+      <tspan fill="#58a6ff">    • </tspan><tspan fill="#c9d1d9">Aggregate to cohort level before export</tspan>
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0; 0.7083; 0.7167; 0.9444; 0.9722; 1" dur="18s" repeatCount="indefinite"/>
+    </text>
+
+    <!-- L14: decision_id -->
+    <text x="24" y="416">
+      <tspan fill="#8b949e">  decision_id: </tspan><tspan fill="#6e7681" font-style="italic">dec_8a1f4c2b…c92e</tspan>
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0; 0.7472; 0.7556; 0.9444; 0.9722; 1" dur="18s" repeatCount="indefinite"/>
+    </text>
+  </g>
+
+  <!-- footer hint, static -->
+  <text x="440" y="522" text-anchor="middle" fill="#484f58" font-size="11">
+    /metatate:discover-context  ·  /metatate:inspect-data  ·  /metatate:authorize-use  ·  /metatate:validate-query  ·  /metatate:release-gate
+  </text>
+</svg>

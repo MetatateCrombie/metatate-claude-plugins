@@ -1,0 +1,148 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+name="metatate"
+account_url=""
+app_name="METATATE_APP"
+schema_name="CORE"
+server_name="METATATE_MCP"
+client_id=""
+callback_port="8080"
+config_scope=""
+oauth_scopes=""
+run_command="false"
+
+usage() {
+  cat <<'EOF'
+Usage:
+  metatate-mcp-add --account-url https://<account-url> --client-id <client-id> [options]
+
+Options:
+  --name <name>                 Claude MCP server name. Default: metatate
+  --app <app>                   Snowflake application database. Default: METATATE_APP
+  --schema <schema>             MCP server schema. Default: CORE
+  --server <server>             MCP server name. Default: METATATE_MCP
+  --callback-port <port>        OAuth callback port. Default: 8080
+  --config-scope <scope>        Claude MCP config scope: local, user, or project.
+  --snowflake-role <role>       Pin OAuth to a Snowflake role via session:role:<ROLE>.
+  --oauth-scopes <scopes>       Pin raw OAuth scopes. Overrides --snowflake-role.
+  --run                         Execute the generated claude command.
+  -h, --help                    Show this help.
+
+The generated command prompts for the OAuth client secret. Do not put secrets in
+plugin files or shell history.
+
+For Snowflake OAuth, prefer --snowflake-role so Claude requests the intended
+session role instead of relying on the user's default role or secondary roles.
+EOF
+}
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --name)
+      name="${2:?missing value for --name}"
+      shift 2
+      ;;
+    --account-url)
+      account_url="${2:?missing value for --account-url}"
+      shift 2
+      ;;
+    --app)
+      app_name="${2:?missing value for --app}"
+      shift 2
+      ;;
+    --schema)
+      schema_name="${2:?missing value for --schema}"
+      shift 2
+      ;;
+    --server)
+      server_name="${2:?missing value for --server}"
+      shift 2
+      ;;
+    --client-id)
+      client_id="${2:?missing value for --client-id}"
+      shift 2
+      ;;
+    --callback-port)
+      callback_port="${2:?missing value for --callback-port}"
+      shift 2
+      ;;
+    --config-scope)
+      config_scope="${2:?missing value for --config-scope}"
+      shift 2
+      ;;
+    --snowflake-role)
+      oauth_scopes="session:role:${2:?missing value for --snowflake-role}"
+      shift 2
+      ;;
+    --oauth-scopes)
+      oauth_scopes="${2:?missing value for --oauth-scopes}"
+      shift 2
+      ;;
+    --run)
+      run_command="true"
+      shift
+      ;;
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    *)
+      echo "Unknown argument: $1" >&2
+      usage >&2
+      exit 2
+      ;;
+  esac
+done
+
+if [[ -z "${account_url}" || -z "${client_id}" ]]; then
+  usage >&2
+  exit 2
+fi
+
+account_url="${account_url%/}"
+endpoint="${account_url}/api/v2/databases/${app_name}/schemas/${schema_name}/mcp-servers/${server_name}"
+
+if [[ -n "${oauth_scopes}" ]]; then
+  config_json="$(
+    ENDPOINT="${endpoint}" \
+    CLIENT_ID="${client_id}" \
+    CALLBACK_PORT="${callback_port}" \
+    OAUTH_SCOPES="${oauth_scopes}" \
+    python3 -c 'import json, os
+print(json.dumps({
+    "type": "http",
+    "url": os.environ["ENDPOINT"],
+    "oauth": {
+        "clientId": os.environ["CLIENT_ID"],
+        "callbackPort": int(os.environ["CALLBACK_PORT"]),
+        "scopes": os.environ["OAUTH_SCOPES"],
+    },
+}))'
+  )"
+  cmd=(claude mcp add-json)
+  if [[ -n "${config_scope}" ]]; then
+    cmd+=(--scope "${config_scope}")
+  fi
+  cmd+=(--client-secret "${name}" "${config_json}")
+else
+  cmd=(claude mcp add)
+  if [[ -n "${config_scope}" ]]; then
+    cmd+=(--scope "${config_scope}")
+  fi
+  cmd+=(
+    --transport http
+    --client-id "${client_id}"
+    --client-secret
+    --callback-port "${callback_port}"
+    "${name}"
+    "${endpoint}"
+  )
+fi
+
+printf '%q ' "${cmd[@]}"
+printf '\n'
+
+if [[ "${run_command}" == "true" ]]; then
+  exec "${cmd[@]}"
+fi

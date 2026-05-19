@@ -1,8 +1,8 @@
 {
   "name": "metatate",
   "displayName": "Metatate",
-  "version": "0.1.2",
-  "description": "Use Metatate governed data context and policy decisions from Claude Code through Snowflake-managed MCP.",
+  "version": "0.1.3",
+  "description": "Use Metatate structured context and policy decisions from Claude Code through Snowflake-managed MCP.",
   "author": {
     "name": "Metatate"
   },

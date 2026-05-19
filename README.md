@@ -1,20 +1,29 @@
 # Metatate Claude Plugins
 
-Claude Code plugin marketplace for Metatate.
+Bring Metatate's structured context and decision layer into Claude Code.
 
 ![Metatate plugin in Claude Code: /metatate:discover-context lists governed assets with sensitivity and PII labels, then /metatate:authorize-use returns a CONDITIONAL decision with rationale, conditions, and a decision_id.](docs/assets/metatate-demo.svg)
 
-The `metatate` plugin brings Metatate governed data workflows into Claude Code
-through the Snowflake-managed MCP server installed by the Metatate Snowflake
-Native App. It does not run a Metatate-hosted MCP gateway and it does not store
-Snowflake credentials in the plugin repository.
+Metatate gives agents structured, machine-readable context for data workflows:
+data meaning, business logic, policies, lineage, access rules, runtime
+conditions, and decision evidence. The `metatate` plugin lets Claude Code query
+that context through the Snowflake-managed MCP server installed by the Metatate
+Snowflake Native App.
+
+Claude Code remains the developer workspace. Metatate remains the source of
+truth for governed data context, intended-use validation, authorization
+decisions, explanations, and audit evidence. This plugin does not run a
+Metatate-hosted MCP gateway and it does not store Snowflake credentials in the
+plugin repository.
 
 ## What You Get
 
-- Slash commands for governed data discovery, policy inspection, data-use
-  authorization, query validation, decision explanation, policy review, and
-  release gating.
-- A Claude skill that tells Claude when and how to use the Metatate MCP tools.
+- Slash commands that map to Metatate's decision workflows: discover governed
+  assets, inspect meaning and rules, authorize use, validate query context,
+  explain decisions, review policy coverage, and run advisory release gates.
+- A Claude skill that keeps Claude grounded in Metatate as the decision layer
+  instead of guessing from schema names, copied policy text, or local code
+  alone.
 - A small local helper script that generates the correct Claude MCP
   registration command for Snowflake OAuth.
 - Customer-facing setup docs for Snowflake administrators and Claude Code

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.3
+
+- Refined the README opening, feature summary, and plugin metadata to align
+  with Metatate's structured context, portable decision layer, and agent
+  coordination positioning.
+
 ## 0.1.2
 
 - Added the full no-clone `claude mcp add-json` registration command to the
